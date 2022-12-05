@@ -1,0 +1,13 @@
+NODE endpoint
+SQL >
+
+    SELECT
+      tweet,
+      timestamp,
+      extract(upper(tweet), 'GO+A*L+') AS goal,
+      length(extract(upper(tweet), 'GO+A*L+')) AS goal_length
+    FROM tweets_match_2
+    ORDER BY goal_length DESC
+    LIMIT 1
+
+

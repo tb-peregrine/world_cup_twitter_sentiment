@@ -1,0 +1,8 @@
+NODE endpoint
+SQL >
+
+    %
+    SELECT color FROM national_team_info
+    WHERE flag = {{String(flag, default='🇺🇸', required=True)}}
+
+

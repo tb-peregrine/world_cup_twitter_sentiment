@@ -1,0 +1,14 @@
+NODE endpoint
+SQL >
+
+    SELECT
+      team1,
+      team2,
+      match_time,
+      match_time - now() AS time_diff
+    FROM matches
+    HAVING time_diff > - 9000
+    ORDER BY time_diff ASC
+    LIMIT 1
+
+

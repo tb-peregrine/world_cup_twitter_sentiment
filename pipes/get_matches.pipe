@@ -1,0 +1,6 @@
+NODE endpoint
+SQL >
+
+    SELECT * FROM matches
+
+

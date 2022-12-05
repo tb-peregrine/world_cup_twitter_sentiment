@@ -1,0 +1,9 @@
+
+SCHEMA >
+    `team1` String,
+    `team2` String,
+    `match_time` DateTime
+
+ENGINE "MergeTree"
+ENGINE_PARTITION_KEY "toYear(match_time)"
+ENGINE_SORTING_KEY "match_time, team1, team2"

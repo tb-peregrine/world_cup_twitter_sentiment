@@ -1,0 +1,7 @@
+NODE endpoint
+SQL >
+
+    %
+    SELECT flag FROM national_team_info WHERE name = {{String(name, default='USA', required=True)}}
+
+

@@ -1,0 +1,33 @@
+NODE tweets
+SQL >
+
+    SELECT
+      tweet,
+      extract(upper(tweet), 'GO+A*L+') AS goal,
+      length(extract(upper(tweet), 'GO+A*L+')) AS goal_length
+    FROM tweets_match_2
+
+
+
+NODE number_list
+SQL >
+
+    SELECT
+      number+1 AS number
+    FROM numbers(280)
+
+
+
+NODE endpoint
+SQL >
+
+    SELECT
+      number,
+      countIf(goal_length > 0) As count
+    FROM number_list
+    LEFT JOIN tweets ON tweets.goal_length = number_list.number
+    GROUP BY number
+    HAVING number>4
+    ORDER BY number ASC
+
+

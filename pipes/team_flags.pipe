@@ -1,0 +1,10 @@
+NODE endpoint
+SQL >
+
+    SELECT
+      name,
+      flag,
+      color
+    FROM national_team_info
+
+

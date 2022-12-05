@@ -1,0 +1,28 @@
+NODE matching_flags
+SQL >
+
+    %
+    SELECT
+      tweet,
+      timestamp,
+      countSubstrings(tweet, {{String(team_1_flag, default='🇺🇸', description='The flag for the first team in the match', required=True)}}) AS team_1_matches,
+      countSubstrings(tweet, {{String(team_2_flag, default='🇮🇷', description='The flag for the second team in the match', required=True)}}) AS team_2_matches
+    FROM tweets_match_2
+    WHERE timestamp >= toDateTime({{DateTime(match_start, default="2022-11-30 15:00:00", description="The match start time in GMT", required=True)}}) - INTERVAL 15 minute
+    AND timestamp < toDateTime({{DateTime(match_start, default="2022-11-30 15:00:00", description="The match start time in GMT", required=True)}}) + INTERVAL 180 minute
+
+
+
+NODE total_flags
+SQL >
+
+    %
+    SELECT
+        toStartOfMinute(timestamp) AS minute,
+        sumIf(team_1_matches, team_2_matches==0) AS total_team_1_matches,
+        sumIf(team_2_matches, team_1_matches==0) AS total_team_2_matches
+    FROM matching_flags
+    GROUP BY minute
+    ORDER BY minute DESC
+
+

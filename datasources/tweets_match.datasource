@@ -1,0 +1,8 @@
+
+SCHEMA >
+    `timestamp` DateTime `json:$.timestamp`,
+    `tweet` String `json:$.tweet`
+
+ENGINE "MergeTree"
+ENGINE_PARTITION_KEY "toYear(timestamp)"
+ENGINE_SORTING_KEY "timestamp, tweet"

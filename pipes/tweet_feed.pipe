@@ -1,0 +1,13 @@
+NODE endpoint
+SQL >
+
+    %
+    SELECT
+      timestamp,
+      replaceAll(tweet,'\n',' ') AS tweet
+    FROM tweets_match_2
+    WHERE tweet not like 'RT%'
+    ORDER BY timestamp DESC
+    LIMIT 20
+
+

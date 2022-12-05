@@ -1,0 +1,9 @@
+
+SCHEMA >
+    `name` String,
+    `handle` String,
+    `flag` String,
+    `color` String
+
+ENGINE "MergeTree"
+ENGINE_SORTING_KEY "name, handle, flag, color"
